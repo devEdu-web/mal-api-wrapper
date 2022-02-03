@@ -1,0 +1,10 @@
+{
+    "animesFields": [
+        "id",
+        "title",
+        "nsfw",
+        "rank",
+        "popularity",
+        "num_episodes"
+    ]
+}
