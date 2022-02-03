@@ -32,6 +32,20 @@ class Oauth {
         })
     }
 
+    refreshAccessToken(refreshToken) {
+        return new Promise((resolve, reject) => {
+            let data = {
+                client_id: this.clientId,
+                client_secret: this.clientSecret,
+                grant_type: 'refresh_token',
+                refresh_token: refreshToken
+            }
+            axios.post(this.#accessTokenUrl, qs.stringify(data))
+            .then(response => resolve(response.data))
+            .catch(err => reject(err))
+        })
+    }
+
 }
 
 export {Oauth}

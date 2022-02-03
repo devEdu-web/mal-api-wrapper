@@ -62,6 +62,24 @@ oauth.accessToken(code, codeVerifier)
 .then(accessTokens => console.log(accessTokens))
 .catch(err => console.log(err))
 
-// You MUST store both of the tokens that will be returned
+// You MUST store both of the tokens that will be returned for future use
+
+```
+
+***
+
+### Refreshing your Token
+
+```javascript
+
+import {Oauth} from './src/components/oauth/Oauth.js'
+
+const refreshToken = 'uFkF1fO16OQ1KvyieMU8sl-Nf76nL-N1pcBMOxffGBQ'
+const oauth = new Oauth(YOUR_CLIENT_ID, YOUR_CLIENT_SECRET)
+
+// Return a new Access and Refresh Token, you also MUST store them for future use
+oauth.refreshToken(refreshToken)
+.then(newTokens => console.log(newTokens))
+.catch(err => console.log(err))
 
 ```
