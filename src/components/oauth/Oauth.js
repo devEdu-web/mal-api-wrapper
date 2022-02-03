@@ -6,13 +6,30 @@ class Oauth {
     #userAuthorizationUrl = "https://myanimelist.net/v1/oauth2/authorize?"
     #accessTokenUrl = "https://myanimelist.net/v1/oauth2/token"
 
-    constructor(clientId, secretId) {
+    constructor(clientId, clientSecret = undefined) {
         this.clientId = clientId,
-        this.secretId = secretId
+        this.clientSecret = clientSecret
     }
 
     getAuthorizationRedirect(codeChallenge) {
         return `${this.#userAuthorizationUrl}response_type=code&client_id=${this.clientId}&code_challenge=${codeChallenge}`
+    }
+
+    accessToken(code, codeVerifier) {
+        return new Promise((resolve, reject) => {
+            let data = {
+                client_id: this.clientId,
+                client_secret: this.clientSecret,
+                code: code,
+                code_verifier: codeVerifier,
+                grant_type: "authorization_code",
+            }
+
+            axios.post(this.#accessTokenUrl, qs.stringify(data))
+            .then(response => resolve(response.data))
+            .catch(err => reject(err))
+
+        })
     }
 
 }
