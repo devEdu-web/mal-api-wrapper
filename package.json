@@ -1,0 +1,19 @@
+{
+  "name": "mal-api-wrapper",
+  "version": "1.0.0",
+  "description": "An application to simplify the use of Myanimelist API and understand more how APIs in general works.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devEdu-web/mal-api-wrapper.git"
+  },
+  "author": "Eduardo Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devEdu-web/mal-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/devEdu-web/mal-api-wrapper#readme"
+}
