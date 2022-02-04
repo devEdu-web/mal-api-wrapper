@@ -27,6 +27,21 @@ class Animes {
         })
     }
 
+    searchAnimeById(id, fields = fieldsParams.animesFields) {
+
+        return new Promise((resolve, reject) => {
+            this.myAxios.get(`${this.#urlBase}/${id}`, {params: {
+                fields: fields.toString()
+            }})
+            .then(response => resolve(response.data))
+            .catch(err => reject(err))
+        })
+
+    }
+
+    // You have to document the las two methods you created to search for animes, and that's all.
+
+
 }
 
 export {Animes}

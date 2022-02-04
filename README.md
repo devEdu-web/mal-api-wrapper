@@ -26,13 +26,10 @@ Here you're gonna need an URL to redirect the user to grant authorization.
 ```javascript
 import {Oauth} from './src/components/oauth/Oauth.js'
 
-// You must generate this randomly and store it
-const codeChallenge = 'uFkF1fO16OQ1KvyieMU8sl-Nf76nL-N1pcBMOxffGBQ'
-
 const oauth = new Oauth(YOUR_CLIENT_ID)
 
 // Will return the url so you can authorize the use of his account, you can send him the URL, or redirect him
-const authorizeUrl = oauth.getAuthorizationRedirect(codeChallenge)
+const authorizeUrl = oauth.getAuthorizationRedirect(YOUR_CODE_CHALLENGE)
 console.log(authorizeUrl) 
 
 // or using express
@@ -53,12 +50,11 @@ After clicking "Allow" you will be redirected to the URL that was set to the fie
 ```javascript
 import {Oauth} from './src/components/oauth/Oauth.js'
 
-// Your code verifier MUST be equal to your code challange
-const codeVerifier = 'uFkF1fO16OQ1KvyieMU8sl-Nf76nL-N1pcBMOxffGBQ'
 const oauth = new Oauth(YOUR_CLIENT_ID, YOUR_CLIENT_SECRET)
 
 // Use the code you got in the authorization process, seen earlier
-oauth.accessToken(code, codeVerifier)
+// Your code verifier MUST be equal to your code challange
+oauth.accessToken(YOUR_CODE, YOUR_CODE_VERIFIER)
 .then(accessTokens => console.log(accessTokens))
 .catch(err => console.log(err))
 
@@ -74,12 +70,41 @@ oauth.accessToken(code, codeVerifier)
 
 import {Oauth} from './src/components/oauth/Oauth.js'
 
-const refreshToken = 'uFkF1fO16OQ1KvyieMU8sl-Nf76nL-N1pcBMOxffGBQ'
 const oauth = new Oauth(YOUR_CLIENT_ID, YOUR_CLIENT_SECRET)
 
 // Return a new Access and Refresh Token, you also MUST store them for future use
-oauth.refreshToken(refreshToken)
+oauth.refreshToken(YOUR_REFRESH_TOKEN)
 .then(newTokens => console.log(newTokens))
+.catch(err => console.log(err))
+
+```
+
+***
+
+## Making a general anime search
+
+```javascript
+import {Animes} from './src/components/anime/Animes.js'
+
+const anime = new Animes(YOUR_ACCESS_TOKEN)
+
+
+anime.searchAnime('one piece', 10, ['num_episodes'])
+.then(animes => console.log(animes))
+.catch(err => console.log(err))
+```
+
+***
+
+## Searching an anime by its ID
+
+```javascript
+import {Animes} from './src/components/anime/Animes.js'
+
+const anime = new Animes(YOUR_ACCESS_TOKEN)
+
+anime.searchAnimeById(animeId, ['num_episodes', 'popularity', 'nsfw'])
+.then(anime => console.log(anime))
 .catch(err => console.log(err))
 
 ```
