@@ -1,0 +1,19 @@
+{
+    "user": [
+        "name",
+        "picture",
+        "gender",
+        "birthday",
+        "anime_statistics",
+        "is_supporter"
+    ],
+
+    "userList": [
+        "list_status",
+        "score",
+        "num_watched_episodes",
+        "priority",
+        "nsfw"
+    ]
+}
+

@@ -11,8 +11,8 @@ class Animes {
     /**
      * 
      * @param {String} q 
-     * @param {Number} limit Default 30
-     * @param {Array} fields  
+     * @param {Number} limit Optional, default 30
+     * @param {Array} fields  Optional
      */
 
     searchAnime(q, limit = 30, fields = fieldsParams.animesFields) {
@@ -22,7 +22,7 @@ class Animes {
                 limit,
                 fields: fields.toString()
             }})
-            .then(response => resolve(response.data.data))
+            .then(response => resolve(response.data))
             .catch(err => reject(err))
         })
     }
@@ -38,8 +38,6 @@ class Animes {
         })
 
     }
-
-    // You have to document the las two methods you created to search for animes, and that's all.
 
 
 }
