@@ -11,7 +11,7 @@ class User {
 
     /**
      * 
-     * @param {String} username Optional
+     * @param {String} username Optional, default me
      * @param {Number} limit Optional, default = 30
      * @param {Array} fields Optional
      * @returns 

@@ -89,7 +89,7 @@ import {Animes} from './src/components/anime/Animes.js'
 const anime = new Animes(YOUR_ACCESS_TOKEN)
 
 
-anime.searchAnime('one piece', 10, ['num_episodes'])
+anime.searchAnime(ANIME_TITLE, LIMIT, FIELDS)
 .then(animes => console.log(animes))
 .catch(err => console.log(err))
 ```
@@ -103,8 +103,20 @@ import {Animes} from './src/components/anime/Animes.js'
 
 const anime = new Animes(YOUR_ACCESS_TOKEN)
 
-anime.searchAnimeById(animeId, ['num_episodes', 'popularity', 'nsfw'])
+anime.searchAnimeById(ANIME_ID, FIELDS)
 .then(anime => console.log(anime))
 .catch(err => console.log(err))
 
+```
+
+## Getting the user's anime list
+
+```javascript
+import {User} from './src/components/user/User.js'
+
+const user = new User(YOUR_ACCESS_TOKEN)
+
+user.getAnimeList(USER_NAME, LIMIT, FIELDS)
+.then(userAnimeList => console.log(userAnimeList))
+.catch(err => console.log(err))
 ```
