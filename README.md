@@ -120,3 +120,27 @@ user.getAnimeList(USER_NAME, LIMIT, FIELDS)
 .then(userAnimeList => console.log(userAnimeList))
 .catch(err => console.log(err))
 ```
+
+## Getting user's info
+
+```javascript
+import {User} from './src/components/user/User.js'
+
+const user = new User(YOUR_ACCESS_TOKEN)
+
+user.getInfo(FIELDS)
+.then(userInfo => console.log(userInfo))
+.catch(err => console.log(err))
+```
+
+***
+
+## About the Mangas
+
+Since I built this project seeking an understanding about the MAl API, and maybe using for personal use in some projects later on, I decided not to code an Manga class for the simple reason that I don't read manga, and there's no use for me particularly. 
+
+***
+
+## Conclusion
+
+It was really fun to build this project, it was my first time building something on top of an API and also was my first contact with **OAuth**. With this project, I could not only practice JS Classes and POO but I also could understand how an API works, how to manipulate its URLs and parameters, how to make requests with Axios, and so on.

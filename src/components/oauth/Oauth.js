@@ -1,19 +1,32 @@
-import axios from 'axios'
-import qs from 'querystring'
+import axios from "axios";
+import qs from "querystring";
 
 class Oauth {
-    #originalUrl = "https://myanimelist.net/v1/oauth2"
-    #userAuthorizationUrl = "https://myanimelist.net/v1/oauth2/authorize?"
-    #accessTokenUrl = "https://myanimelist.net/v1/oauth2/token"
+    #originalUrl = "https://myanimelist.net/v1/oauth2";
+    #userAuthorizationUrl = "https://myanimelist.net/v1/oauth2/authorize?";
+    #accessTokenUrl = "https://myanimelist.net/v1/oauth2/token";
 
     constructor(clientId, clientSecret = undefined) {
-        this.clientId = clientId,
-        this.clientSecret = clientSecret
+        this.clientId = clientId, 
+        this.clientSecret = clientSecret;
     }
 
+    /**
+     * 
+     * @param {String} codeChallenge 
+     * @returns 
+     */
+
     getAuthorizationRedirect(codeChallenge) {
-        return `${this.#userAuthorizationUrl}response_type=code&client_id=${this.clientId}&code_challenge=${codeChallenge}`
+        return `${this.#userAuthorizationUrl}response_type=code&client_id=${this.clientId}&code_challenge=${codeChallenge}`;
     }
+
+    /**
+     * 
+     * @param {String} code 
+     * @param {Strig} codeVerifier 
+     * @returns 
+     */
 
     accessToken(code, codeVerifier) {
         return new Promise((resolve, reject) => {
@@ -23,13 +36,13 @@ class Oauth {
                 code: code,
                 code_verifier: codeVerifier,
                 grant_type: "authorization_code",
-            }
+            };
 
-            axios.post(this.#accessTokenUrl, qs.stringify(data))
-            .then(response => resolve(response.data))
-            .catch(err => reject(err))
-
-        })
+            axios
+                .post(this.#accessTokenUrl, qs.stringify(data))
+                .then((response) => resolve(response.data))
+                .catch((err) => reject(err));
+        });
     }
 
     refreshAccessToken(refreshToken) {
@@ -37,15 +50,15 @@ class Oauth {
             let data = {
                 client_id: this.clientId,
                 client_secret: this.clientSecret,
-                grant_type: 'refresh_token',
-                refresh_token: refreshToken
-            }
-            axios.post(this.#accessTokenUrl, qs.stringify(data))
-            .then(response => resolve(response.data))
-            .catch(err => reject(err))
-        })
+                grant_type: "refresh_token",
+                refresh_token: refreshToken,
+            };
+            axios
+                .post(this.#accessTokenUrl, qs.stringify(data))
+                .then((response) => resolve(response.data))
+                .catch((err) => reject(err));
+        });
     }
-
 }
 
-export {Oauth}
+export { Oauth };
